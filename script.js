@@ -1,13 +1,13 @@
 const transactionUl = document.querySelector('#transactions');
 
 
-const dummtTransactions = [
+const dummyTransactions = [
     { id: 1 , name: 'bolo de brigadeiro ', amount: -20 } ,
     { id: 2 , name: ' salario', amount: 300 } ,
     { id: 3 , name: ' torta de franco ', amount: -10 } ,
     { id: 4 , name: ' Violão ', amount: 150 } , 
     { id: 5 , name: 'arroz ', amount : -25  }
-]
+];  
 
 
 const addTransactionIntoDom = transaction => {
@@ -23,9 +23,14 @@ const addTransactionIntoDom = transaction => {
    transactionUl.append(li); 
 }
   
+const updateBalanceValue = () => {
+   const transactionAmounts = dummyTransactions.map(transaction =>  transaction.amount )
+   console.log(transactionAmounts)
+}
 
 const init = () => {
-   dummtTransactions.forEach(addTransactionIntoDom)
+   dummyTransactions.forEach(addTransactionIntoDom)
+   updateBalanceValue(); 
 }
 
 init() 
