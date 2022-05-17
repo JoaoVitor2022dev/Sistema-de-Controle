@@ -34,3 +34,6 @@ const init = () => {
 }
 
 init() 
+
+/// parte da exlpicação do professor 
+
