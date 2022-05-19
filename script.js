@@ -6,8 +6,9 @@ const dummyTransactions = [
     { id: 2 , name: ' salario', amount: 300 } ,
     { id: 3 , name: ' torta de franco ', amount: -10 } ,
     { id: 4 , name: ' Violão ', amount: 150 } , 
-    { id: 5 , name: 'arroz ', amount : -25  }
-];  
+    { id: 5 , name: 'arroz ', amount : -25  } , 
+    { id: 6 , name: 'bolo de chocolate', amount : -25}
+];   
 
 
 const addTransactionIntoDom = transaction => {
@@ -37,3 +38,10 @@ init()
 
 /// parte da exlpicação do professor 
 
+
+ const home = ( homedESENVELOP , homecenter) => { 'oi'}
+
+ const numbers = [1,2,3]; 
+undefined
+
+const sum = numbers.reduce(() => { return  }  ) 
