@@ -25,8 +25,16 @@ const addTransactionIntoDom = transaction => {
 }
   
 const updateBalanceValue = () => {
-   const transactionAmounts = dummyTransactions.map(transaction =>  transaction.amount )
-   console.log(transactionAmounts)
+   const transactionAmounts = dummyTransactions
+   .map(transaction =>  transaction.amount )
+   const  total = transactionAmounts
+   .reduce((accumulator, transaction) => accumulator + transaction, 0 )
+   .toFixed(2)  
+   const income = transactionAmounts
+   .filter( value => value > 0 )
+   .reduce(accumulator, value => accumulator + value , 0)
+   .toFixed(2); 
+   console.log(income); 
 }
 
 const init = () => {
@@ -36,12 +44,3 @@ const init = () => {
 
 init() 
 
-/// parte da exlpicação do professor 
-
-
- const home = ( homedESENVELOP , homecenter) => { 'oi'}
-
- const numbers = [1,2,3]; 
-undefined
-
-const sum = numbers.reduce(() => { return  }  ) 
