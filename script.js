@@ -2,6 +2,11 @@ const transactionUl = document.querySelector('#transactions');
 const incomeDisplay = document.querySelector('#money-plus');
 const expenseDisplay = document.querySelector('#money-minus'); 
 const balanceDisplay = document.querySelector('#balance'); 
+const form = document.querySelector('#form'); 
+const inputTrasactionName =  document.querySelector('#text'); 
+const inputTrasactionAmount = document.querySelector('#amount'); 
+
+console.log({ inputTrasactionAmount , inputTrasactionName });  
 
 const dummyTransactions = [
     { id: 1 , name: 'bolo de brigadeiro ', amount: -20 } ,
@@ -54,5 +59,35 @@ const init = () => {
 init() 
 
 
+const generateID = () => Math.round(Math.random() * 1000); 
 
-// tempo do video é 42:47 para voltar o projeto amanha... 
+
+form.addEventListener('submit' , event => {
+   event.preventDefault(); 
+ 
+ const transactionName = inputTrasactionName.value.trim()
+ const transactionAmount = inputTrasactionAmount.value.trim()
+
+
+  if( inputTrasactionAmount === '' || inputTrasactionAmount  === '' ){
+     window.alert(' Por favor, preencha tanto o nome quanto o valor da transação')
+     return 
+  }
+  
+ 
+  const transaction = { 
+     id: generateID(),
+     name: transactionName,
+     amount: transactionAmount
+  }
+  
+ dummyTransactions.push(transaction)
+ init()
+
+ inputTrasactionName.value = ''
+ inputTrasactionAmount.value = ''
+
+})
+
+
+// tempo do video é 52:23 para voltar o projeto amanha... 
