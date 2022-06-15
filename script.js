@@ -6,9 +6,8 @@ const form = document.querySelector('#form');
 const inputTrasactionName =  document.querySelector('#text'); 
 const inputTrasactionAmount = document.querySelector('#amount'); 
 
-console.log({ inputTrasactionAmount , inputTrasactionName });  
 
-const dummyTransactions = [
+let dummyTransactions = [
     { id: 1 , name: 'bolo de brigadeiro ', amount: -20 } ,
     { id: 2 , name: ' salario', amount: 300 } ,
     { id: 3 , name: ' torta de franco ', amount: -10 } ,
@@ -18,6 +17,11 @@ const dummyTransactions = [
 ];   
 
 
+const remoceTransaction = ID => {
+   dummyTransactions = dummyTransactions.filter(transaction => transaction.id !== ID)
+   init()
+} 
+
 const addTransactionIntoDom = transaction => {
    const operator = transaction.amount < 0 ? '-' : '+';
    const CSSclass = transaction.amount  < 0 ? 'minus' : 'plus'; 
@@ -26,8 +30,9 @@ const addTransactionIntoDom = transaction => {
 
    li.classList.add(CSSclass)
    li.innerHTML = `
-      ${transaction.name} <span>${operator} R$ ${amountWithoutOperator}</span><button class="delete-btn">x</button>
-   `
+      ${transaction.name} 
+      <span>${operator} R$ ${amountWithoutOperator}</span>
+      <button class="delete-btn" onclick="remoceTransaction(${transaction.id})">x</button>`
    transactionUl.append(li); 
 }
   
@@ -89,6 +94,3 @@ form.addEventListener('submit' , event => {
  inputTrasactionAmount.value = ''
 
 })
-
-
-// tempo do video é 52:23 para voltar o projeto amanha... 
