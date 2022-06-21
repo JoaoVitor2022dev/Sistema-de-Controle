@@ -68,8 +68,16 @@ const updateLocalstorage = () => {
 
 const generateID = () => Math.round(Math.random() * 1000); 
 
+const addToTransactionsArray = (transactionName , transactionAmount) =>{ 
+    transactions.push(
+   { id: generateID(),
+    name: transactionName,
+    amount: Number(transactionAmount)
+   }); 
+    
+}
 
-form.addEventListener('submit' , event => {
+const handleFormSubmit = event => {
    event.preventDefault(); 
  
  const transactionName = inputTrasactionName.value.trim()
@@ -81,21 +89,15 @@ form.addEventListener('submit' , event => {
      return 
   }
   
- 
-  const transaction = { 
-     id: generateID(),
-     name: transactionName,
-     amount: Number(transactionAmount)
-  }
   
- transactions.push(transaction)
+ addToTransactionsArray( transactionName , transactionAmount) ; 
  init()
  updateLocalstorage(); 
 
  inputTrasactionName.value = ''
  inputTrasactionAmount.value = ''
 
-})
+}
 
+form.addEventListener('submit' , handleFormSubmit )
 
-// tempo do video é 1:06:41 para voltar o projeto amanha... 
