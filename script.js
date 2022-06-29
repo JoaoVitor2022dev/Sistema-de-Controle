@@ -33,20 +33,33 @@ const addTransactionIntoDom = transaction => {
    transactionUl.append(li); 
 }
   
-const updateBalanceValue = () => {
-   const transactionAmounts = transactions
-   .map(transaction =>  transaction.amount )
-   const  total = transactionAmounts
-   .reduce((accumulator, transaction) => accumulator + transaction, 0 ) 
-   .toFixed(2)  
-   const income = transactionAmounts
-   .filter( value => value > 0 )
-   .reduce((accumulator, value) => accumulator + value , 0)
-   .toFixed(2); 
-   const expense =  Math.abs(transactionAmounts
+const getExpenses = () => { Math.abs(transactionAmounts
    .filter( value => value < 0 )
    .reduce((accumulator , value) => accumulator  + value  , 0 ))
    .toFixed(2)
+}
+
+
+const getIcone = transactionAmounts => { 
+   transactionAmounts
+   .filter( value => value > 0 )
+   .reduce((accumulator, value) => accumulator + value , 0)
+   .toFixed(2); 
+}
+
+
+const getTotal = transactionAmounts => { 
+   transactionAmounts
+   .reduce((accumulator, transaction) => accumulator + transaction, 0 ) 
+   .toFixed(2) 
+} 
+
+
+const updateBalanceValue = () => {
+   const transactionAmounts = transactions.map(({ amount}) =>  transaction.amount ); 
+   const  total = getTotal(transactionAmounts); 
+   const income = getIcone(transactionAmounts); 
+   const expense = getExpenses(transactionAmounts); 
  
     balanceDisplay.textContent = `R$ ${total}`
     incomeDisplay.textContent =  `R$ ${income}`
@@ -77,27 +90,36 @@ const addToTransactionsArray = (transactionName , transactionAmount) =>{
     
 }
 
+
+ const cleanInput = () => { 
+   inputTrasactionName.value = ''
+   inputTrasactionAmount.value = ''
+ } ; 
+
 const handleFormSubmit = event => {
    event.preventDefault(); 
  
  const transactionName = inputTrasactionName.value.trim()
  const transactionAmount = inputTrasactionAmount.value.trim()
+ const isSomeInputEmpty = inputTrasactionAmount === '' || inputTrasactionAmount  === '' ;  
 
-
-  if( inputTrasactionAmount === '' || inputTrasactionAmount  === '' ){
+  if(!isSomeInputEmpty){
      window.alert(' Por favor, preencha tanto o nome quanto o valor da transação')
      return 
   }
   
-  
  addToTransactionsArray( transactionName , transactionAmount) ; 
  init()
  updateLocalstorage(); 
-
- inputTrasactionName.value = ''
- inputTrasactionAmount.value = ''
+ cleanInput(); 
 
 }
 
 form.addEventListener('submit' , handleFormSubmit )
+
+
+// tempo do video é 1:13:49 para voltar o projeto amanha... 
+
+
+// ele esta na function getUpdateValue 
 
