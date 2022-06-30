@@ -19,17 +19,16 @@ const removeTransaction = ID => {
    init()
 } 
 
-const addTransactionIntoDom = transaction => {
-   const operator = transaction.amount < 0 ? '-' : '+';
-   const CSSclass = transaction.amount  < 0 ? 'minus' : 'plus'; 
+const addTransactionIntoDom = ({amount , name , id }) => {
+   const operator = amount < 0 ? '-' : '+';
+   const CSSclass = amount  < 0 ? 'minus' : 'plus'; 
    const amountWithoutOperator = Math.abs(transaction.amount)
    const li = document.createElement('li') 
 
    li.classList.add(CSSclass)
    li.innerHTML = `
-      ${transaction.name} 
-      <span>${operator} R$ ${amountWithoutOperator}</span>
-      <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>`
+      ${name} 
+   <span>${operator} R$ ${amountWithoutOperator}</span><button class="delete-btn" onclick="removeTransaction(${id})">x</button>`
    transactionUl.append(li); 
 }
   
@@ -56,7 +55,7 @@ const getTotal = transactionAmounts => {
 
 
 const updateBalanceValue = () => {
-   const transactionAmounts = transactions.map(({ amount}) =>  transaction.amount ); 
+   const transactionAmounts = transactions.map(({ amount}) => amount ); 
    const  total = getTotal(transactionAmounts); 
    const income = getIcone(transactionAmounts); 
    const expense = getExpenses(transactionAmounts); 
@@ -115,11 +114,4 @@ const handleFormSubmit = event => {
 
 }
 
-form.addEventListener('submit' , handleFormSubmit )
-
-
-// tempo do video é 1:13:49 para voltar o projeto amanha... 
-
-
-// ele esta na function getUpdateValue 
-
+form.addEventListener('submit' , handleFormSubmit ); 
